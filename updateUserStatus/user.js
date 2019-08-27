@@ -9,6 +9,7 @@ module.exports = {
         if (!data) {
             result.invalidInput(cb);
         } else {
+            dummyConsole();
             const clientId = (helper.isAdmin(principals)) ? principals['sub'] : principals['clientId'];
             data.clientId = clientId;
             userSettingModel.updateOne({clientId: clientId}, {isNewUser: data.isNewUserStatus}).then((data) => {
@@ -17,4 +18,8 @@ module.exports = {
         }
     }
 };
+
+function dummyConsole() {
+    console.log('console');
+}
 
